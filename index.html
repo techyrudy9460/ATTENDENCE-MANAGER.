@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Attendance Calculator</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+<script>
+  function toggleMenu() {
+    document.querySelector('.nav-links').classList.toggle('active');
+  }
+</script>
+<body>
+<!-- change -->
+<header>
+  <nav class="navbar">
+    <div class="logo">
+      <img src="attendencelogo.png" alt="Logo" class="logo-img">
+      <span>Attendance Calculator</span>
+    </div>
+    <div class="hamburger" onclick="toggleMenu()">&#9776;</div>
+    <!-- change one -->
+    <ul class="nav-links">
+      <li><a href="#home" id ="homebtn">Home</a></li>
+      <li><a href="#about" id ="about">About Us</a></li>
+      <!-- <li><a href="#features"id ="homebtn">Features</a></li> -->
+      <li><a href="#support"id ="supportbtn">Support</a></li>
+      <li><a href="#contact"id ="contactbtn">Contact</a></li>
+    </ul>
+  </nav>
+</header>
+
+    <div class="container">
+        <div class="header">
+            <p>Track and plan your attendance goals with precision.</p>
+        </div>
+
+        <div class="calculator-card">
+            <div class="input-group">
+                <label for="totalClasses">Total Classes</label>
+                <input type="number" id="totalClasses" class="input-field" placeholder="Enter total number of classes" min="1">
+            </div>
+
+            <div class="input-group">
+                <label for="classesAttended">Classes Attended</label>
+                <input type="number" id="classesAttended" class="input-field" placeholder="Enter classes attended" min="0">
+            </div>
+
+            <div class="input-group">
+                <label for="targetAttendance">Target Attendance (%)</label>
+                <input type="number" id="targetAttendance" class="input-field" placeholder="Enter target percentage" min="0" max="100" value="75">
+            </div>
+
+            <button class="analyze-btn" onclick="analyzeAttendance()">
+                📈 Analyze Attendance
+            </button>
+        </div>
+
+        <div id="resultsSection" class="results-section" style="display: none;">
+            <div class="result-card">
+                <h3>Current Attendance</h3>
+                <div id="currentPercentage" class="result-value">0%</div>
+                <div id="attendanceStatus" class="result-details"></div>
+            </div>
+
+            <div class="result-card">
+                <h3>To Reach Target</h3>
+                <div id="requiredClasses" class="result-value">0</div>
+                <div id="targetDetails" class="result-details"></div>
+            </div>
+
+            <div class="result-card">
+                <h3>Can Afford to Miss</h3>
+                <div id="canMiss" class="result-value">0</div>
+                <div id="missDetails" class="result-details"></div>
+            </div>
+        </div>
+
+        <div id="monthlyPlan" class="chart-container" style="display: none;">
+            <h3 style="text-align: center; margin-bottom: 20px; color: var(--text-dark);">📅 Monthly Plan</h3>
+            <canvas id="attendanceChart"></canvas>
+        </div>
+
+        <div class="export-section">
+            <button class="export-btn" onclick="exportReport()" style="display: none;" id="exportBtn">
+                💾 Export Report
+            </button>
+        </div>
+    </div>
+<section id="about" class="about-section">
+  <div class="about-content">
+    <h2>About Us</h2>
+    <p>
+      Our Attendance Calculator helps students and professionals easily track 
+      attendance, set goals, and plan their schedules effectively. With a 
+      simple interface and powerful analysis tools, achieving your target 
+      attendance has never been easier.
+    </p>
+  </div>
+</section>
+
+    <!-- !-- Send Message Section --> 
+     <!-- FOOTER SECTIONNNNNNNN -->
+    <form class="contact-form" action="https://formspree.io/f/xwpnldld" method="post">
+    <h2>Feedback</h2>
+    <input type="text" name="name" placeholder="Your Name" required>
+    <input type="email" name="email" placeholder="your@email.com" required>
+    <input type="text" name="subject" placeholder="Message Subject" required>
+    <textarea name="message" placeholder="Your Message" required></textarea>
+    <button class="send-btn" type="submit">Submit</button>
+</form>
+    <div class=" trademark">
+        <p>@2025 Attendance Calculator | Created By:</p>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
